@@ -107,8 +107,20 @@ class Main
         
         # 详见 JavaTeachRespositry  Game2048.Methods 类
         # 对于这个新的移动方式，参考Python实现的方式
-        
-        
+        if($dirct < 2){
+            
+        }
+        if($dirct == 0){
+            ;
+        } elseif ($dirct == 1) {
+            ;
+        } elseif ($dirct == 2) {
+            ;
+        } elseif ($dirct == 3) {
+            ;
+        } else {
+            
+        }
         
         ;
     }
