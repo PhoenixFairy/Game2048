@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
+ * @access 本程序可以参考 :  JavaTeachRespositry下的  Game2048.Methods类
  * @author Axoford12
- *
+ * @see QQ 847072154
  */
 class Main
 {
@@ -96,10 +96,20 @@ class Main
     /**
      *
      * @param $mtr 数据集合
+     * @param $dirct 移动方式
      *            按照2048的规则移动数据
      */
-    public static function move($mtr)
+    public static function move($mtr,$dirct)
     {
+        # 这里我想换一个方式，不用Java的那种死板方法，
+        # 思路是这样的  先把所有的移动抽象为向左移动，然后把所谓的左移动参数化
+        # 当然啦，Java的移动方法还是比较可行的，经过了很多次的改动，但是我还是觉得挺麻烦的额
+        
+        # 详见 JavaTeachRespositry  Game2048.Methods 类
+        # 对于这个新的移动方式，参考Python实现的方式
+        
+        
+        
         ;
     }
 }
