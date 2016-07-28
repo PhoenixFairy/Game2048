@@ -107,9 +107,25 @@ class Main
         
         # 详见 JavaTeachRespositry  Game2048.Methods 类
         # 对于这个新的移动方式，参考Python实现的方式
+        
+        $tmp = array(array(),array(),array(),array()); # 定义缓冲区数组
+        $res = $mtr; # 定义结果数组，直接克隆自$res  下面使用集合来实现倒退步骤。       
         if($dirct < 2){
-            
+            for($i = 0;$i<4;$i++){
+                for($j = 0;$j<4;$j++){
+                    $tmp[$j][$i] = $mtr[$j][$i];        
+                }
+            }
+        } else {
+            for($i = 0;$i<4;$i++){
+                for($j = 0;$j<4;$j++){
+                    $tmp[$i][$j] = $mtr[$i][$j];
+                }
+            }
         }
+        
+        
+        
         if($dirct == 0){
             ;
         } elseif ($dirct == 1) {
