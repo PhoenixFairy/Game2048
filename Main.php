@@ -29,8 +29,8 @@ class Main
     private static function getRandomDimension()
     {
         return array(
-            (int) rand(0, 5),
-            (int) rand(0, 5)
+            (int) rand(0, 3),
+            (int) rand(0, 3)
         );
     }
 
@@ -51,7 +51,7 @@ class Main
      * @param $_ 是否反方向移动
      *            返回移动后数据
      */
-    public static function move_line($data_array, $_)
+    private static function move_line($data_array, $_)
     {
         ;
         // 思路
@@ -118,7 +118,7 @@ class Main
                         $tmp_area[1] = $tmp_n_zero_nbr[1];
                         $tmp_area[2] = $tmp_n_zero_nbr[2] * 2;
                     } else {
-                        for($i = 0;$i<4;$i++){
+                        for ($i = 0; $i < 4; $i ++) {
                             $tmp_area[$i] = $tmp_n_zero_nbr[$i];
                         }
                     }
@@ -131,8 +131,8 @@ class Main
         if ($_) {
             // 如果是反方向移动，将数组元素倒向排列 ;
             $tmp_area__ = $tmp_area;
-            for ($i = 0; $i < 4; $i++) {
-                $tmp_area[$i] = $tmp_area__[3-$i];
+            for ($i = 0; $i < 4; $i ++) {
+                $tmp_area[$i] = $tmp_area__[3 - $i];
             }
         }
         return $tmp_area;
@@ -144,9 +144,9 @@ class Main
      */
     public static function display($mtr)
     {
-        for ($i = 0; $i < count($mtr); $i ++) {
-            for ($j = 0; $j < count($mtr[$i]); $j ++) {
-                echo "$mtr[$i][$j] ";
+        for ($i = 0; $i < 4; $i ++) {
+            for ($j = 0; $j < 4; $j ++) {
+                echo $mtr[$i][$j].' ';
             }
             echo "\n";
         }
@@ -184,7 +184,7 @@ class Main
             )
         );
         $dimension = Main::getRandomDimension();
-        $res[$dimension[0]][$dimension[1]] = Main::$ran[(int) rand(0, 2)];
+        $res[$dimension[0]][$dimension[1]] = Main::$ran[(int) rand(0, 1)];
         return $res;
     }
 
@@ -202,13 +202,34 @@ class Main
         
         // 详见 JavaTeachRespositry Game2048.Methods 类
         // 对于这个新的移动方式，参考Python实现的方式
-        $tmp = array(
-            array(),
-            array(),
-            array(),
-            array()
-        );
+        $tmp_rst = null; // 定义结果缓冲区
         $psh_mbr = null;
+        $tmp = array(
+            array(
+                0,
+                0,
+                0,
+                0
+            ),
+            array(
+                0,
+                0,
+                0,
+                0
+            ),
+            array(
+                0,
+                0,
+                0,
+                0
+            ),
+            array(
+                0,
+                0,
+                0,
+                0
+            )
+        ); // 定义(行/列)缓冲区数组
         for ($i = 0; $i < 4; $i ++) {
             for ($j = 0; $j < 4; $j ++) {
                 if ($dirct < 0) {
@@ -217,7 +238,6 @@ class Main
                     $psh_nbr = $mtr[$i][$j];
                 }
                 $tmp[$i][$j] = $psh_nbr;
-                array_push($not_zero_numbers, $psh_nbr);
             }
         }
         // 如上，遍历数组，操作为上下操作的时候上下遍历写入缓冲数组
@@ -227,17 +247,19 @@ class Main
         } else {
             $_ = true;
         }
-        if ($dirct == - 2) {
-            ;
-        } elseif ($dirct == - 1) {
-            ;
-        } elseif ($dirct == 2) {
-            ;
-        } elseif ($dirct == 1) {
-            ;
-        } else {}
-        
-        ;
+        for ($i = 0; $i < 4; $i ++) {
+            $tmp[$i] = Main::move_line($tmp[$i], $_);
+        }
+        for ($i = 0; $i < 4; $i ++) {
+            for ($j = 0; $j < 4; $j ++) {
+                if ($dirct < 0) {
+                    $tmp_rst[$j][$i] = $tmp[$i][$j];
+                } else {
+                    $tmp_rst[$i][$j] = $tmp[$i][$j];
+                }
+            }
+        }
+        return $tmp_rst;
     }
 }
 
