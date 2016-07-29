@@ -51,7 +51,7 @@ class Main
      * @param $_ 是否反方向移动
      *            返回移动后数据
      */
-    private static function move_line($data_array, $_)
+    public static function move_line($data_array, $_)
     {
         ;
         // 思路
@@ -80,7 +80,7 @@ class Main
                         $tmp_area[$i] = $tmp_n_zero_nbr[$i]; // 按照顺序赋值给缓冲区
                     }
                 } else { // 两个数据相等
-                    $tmp_area[0] = $tmp_n_zero_nbr[0]; // 将两数据和写入缓冲区首位
+                    $tmp_area[0] = $tmp_n_zero_nbr[0] * 2; // 将两数据和写入缓冲区首位
                 }
                 break;
             case 3:
@@ -104,7 +104,7 @@ class Main
                 if ($tmp_n_zero_nbr[0] == $tmp_n_zero_nbr[1]) {
                     $tmp_area[0] = $tmp_n_zero_nbr[0] * 2;
                     if ($tmp_n_zero_nbr[2] == $tmp_n_zero_nbr[3]) {
-                        $tmp_area[1] = $tmp_n_zero_nbr[1] * 2;
+                        $tmp_area[1] = $tmp_n_zero_nbr[2] * 2;
                     } else {
                         $tmp_area[1] = $tmp_n_zero_nbr[2];
                         $tmp_area[2] = $tmp_n_zero_nbr[3];
@@ -113,6 +113,7 @@ class Main
                     $tmp_area[0] = $tmp_n_zero_nbr[0];
                     if ($tmp_n_zero_nbr[1] == $tmp_n_zero_nbr[2]) {
                         $tmp_area[1] = $tmp_n_zero_nbr[1] * 2;
+                        $tmp_area[2] = $tmp_n_zero_nbr[3];
                     } elseif ($tmp_n_zero_nbr[2] == $tmp_n_zero_nbr[3]) {
                         $tmp_area[1] = $tmp_n_zero_nbr[1];
                         $tmp_area[2] = $tmp_n_zero_nbr[2] * 2;
