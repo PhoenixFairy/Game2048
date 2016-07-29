@@ -57,7 +57,6 @@ class Main
         // 思路
         // 找出本行的非零数据,直接把非零数移动
         $tmp_n_zero_nbr = array(); // 定义缓冲数组，记录非零数
-        $tmp_clone = $data_array; // 缓冲数组数据克隆
         $tmp_area = array(
             0,
             0,
@@ -95,13 +94,34 @@ class Main
                     $tmp_area[0] = $tmp_n_zero_nbr[0] * 2;
                     $tmp_area[1] = $tmp_n_zero_nbr[2];
                 } else {
-                    for ($i=0;$i<3;$i++){
-                        $tmp_area[$i] = $tmp_n_zero_nbr[$i]; 
+                    for ($i = 0; $i < 3; $i ++) {
+                        $tmp_area[$i] = $tmp_n_zero_nbr[$i];
                     }
                 }
                 break;
             case 4:
-                
+                // 四个非零数据,继续按照优先级判断等量关系写入数据
+                if ($tmp_n_zero_nbr[0] == $tmp_n_zero_nbr[1]) {
+                    $tmp_area[0] = $tmp_n_zero_nbr[0] * 2;
+                    if ($tmp_n_zero_nbr[2] == $tmp_n_zero_nbr[3]) {
+                        $tmp_area[1] = $tmp_n_zero_nbr[1] * 2;
+                    } else {
+                        $tmp_area[1] = $tmp_n_zero_nbr[2];
+                        $tmp_area[2] = $tmp_n_zero_nbr[3];
+                    }
+                } else {
+                    $tmp_area[0] = $tmp_n_zero_nbr[0];
+                    if ($tmp_n_zero_nbr[1] == $tmp_n_zero_nbr[2]) {
+                        $tmp_area[1] = $tmp_n_zero_nbr[1] * 2;
+                    } elseif ($tmp_n_zero_nbr[2] == $tmp_n_zero_nbr[3]) {
+                        $tmp_area[1] = $tmp_n_zero_nbr[1];
+                        $tmp_area[2] = $tmp_n_zero_nbr[2] * 2;
+                    } else {
+                        for($i = 0;$i<4;$i++){
+                            $tmp_area[$i] = $tmp_n_zero_nbr[$i];
+                        }
+                    }
+                }
                 break;
             default:
                 return $data_array;
