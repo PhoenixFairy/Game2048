@@ -127,9 +127,14 @@ class Main
                 return $data_array;
                 break;
         }
-        if (! $_) {
-            ;
+        if ($_) {
+            // 如果是反方向移动，将数组元素倒向排列 ;
+            $tmp_area__ = $tmp_area;
+            for ($i = 0; $i < 4; $i++) {
+                $tmp_area[$i] = $tmp_area__[3-$i];
+            }
         }
+        return $tmp_area;
     }
 
     /**
