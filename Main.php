@@ -53,9 +53,14 @@ class Main
      */
     private static function move_line($data_array, $_)
     {
-        ;
         // 思路
         // 找出本行的非零数据,直接把非零数移动
+        $array = $data_array;
+        if ($_) {
+            for ($i = 0; $i < 4; $i ++) {
+                $array[$i] = $data_array[3 - $i];
+            }
+        }
         $tmp_n_zero_nbr = array(); // 定义缓冲数组，记录非零数
         $tmp_area = array(
             0,
@@ -64,8 +69,8 @@ class Main
             0
         ); // 移动缓冲数据数组
         for ($i = 0; $i < 4; $i ++) {
-            if ($data_array[$i] != 0) {
-                array_push($tmp_n_zero_nbr, $data_array[$i]);
+            if ($array[$i] != 0) {
+                array_push($tmp_n_zero_nbr, $array[$i]);
             }
         }
         // 将非零数写入到数组
@@ -91,8 +96,8 @@ class Main
                     $tmp_area[0] = $tmp_n_zero_nbr[0] * 2;
                     $tmp_area[1] = $tmp_n_zero_nbr[2];
                 } elseif ($tmp_n_zero_nbr[1] == $tmp_n_zero_nbr[2]) {
-                    $tmp_area[0] = $tmp_n_zero_nbr[0] * 2;
-                    $tmp_area[1] = $tmp_n_zero_nbr[2];
+                    $tmp_area[0] = $tmp_n_zero_nbr[0];
+                    $tmp_area[1] = $tmp_n_zero_nbr[2] * 2;
                 } else {
                     for ($i = 0; $i < 3; $i ++) {
                         $tmp_area[$i] = $tmp_n_zero_nbr[$i];
@@ -128,14 +133,33 @@ class Main
                 return $data_array;
                 break;
         }
+        $tmp_area_mbr = $tmp_area;
         if ($_) {
-            // 如果是反方向移动，将数组元素倒向排列 ;
-            $tmp_area__ = $tmp_area;
-            for ($i = 0; $i < 4; $i ++) {
-                $tmp_area[$i] = $tmp_area__[3 - $i];
+            for($i=0;$i<4;$i++){
+                $tmp_area[$i] = $tmp_area_mbr[3-$i];
             }
         }
         return $tmp_area;
+    }
+
+    private static function add_rand_nbr($mtr)
+    {
+        $rst_tmp = array();
+        $rst_bfr = $mtr;
+        for ($i = 0; $i < 4; $i ++) {
+            for ($j = 0; $j < 4; $j ++) {
+                if ($rst_bfr[$i][$j] == 0) {
+                    array_push($rst_tmp, array(
+                        $i,
+                        $j
+                    ));
+                }
+            }
+        }
+        $rand = (int) rand(0, count($rst_tmp) - 1);
+        $rst = $mtr;
+        $rst[$rst_tmp[$rand][0]][$rst_tmp[$rand][1]] = Main::$ran[(int) rand(0, 1)];
+        return $rst;
     }
 
     /**
@@ -144,12 +168,15 @@ class Main
      */
     public static function display($mtr)
     {
+        echo '<table>' . "\n";
         for ($i = 0; $i < 4; $i ++) {
+            echo '<tr>' . "\n";
             for ($j = 0; $j < 4; $j ++) {
-                echo $mtr[$i][$j].' ';
+                echo '<td>' . $mtr[$i][$j] . '</td>' . "\n";
             }
-            echo "\n";
+            echo "</tr>" . "\n";
         }
+        echo '</table>' . "\n";
     }
 
     /**
@@ -242,7 +269,7 @@ class Main
         }
         // 如上，遍历数组，操作为上下操作的时候上下遍历写入缓冲数组
         // 操作为左右的时候 左右遍历写入缓冲数组
-        if (abs($dirct) == 2) {
+        if ((abs($dirct) == 2)) {
             $_ = false;
         } else {
             $_ = true;
@@ -259,6 +286,7 @@ class Main
                 }
             }
         }
+        $tmp_rst = Main::add_rand_nbr($tmp_rst);
         return $tmp_rst;
     }
 }
