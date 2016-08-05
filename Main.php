@@ -161,7 +161,36 @@ class Main
         $rst[$rst_tmp[$rand][0]][$rst_tmp[$rand][1]] = Main::$ran[(int) rand(0, 1)];
         return $rst;
     }
-
+    
+    /**
+     * 
+     * @param $array_bak 之前的操作数组
+     * @param $array_operaed 被操作之后的数组
+     * @return Legitimacy array 1 after the operation
+     * 对于此操作返回合法性
+     */
+    private static function is_legal($array_bak,$array_operaed){
+        for($i=0;$i<4;$i++){
+            for($j=0;$j<4;$j++){
+                if($array_bak[$i][$j] != $array_operaed[$i][$j]){
+                    return true;
+                    // means this operation is legal;
+                    // push the array in bak_trace 
+                    // the bak_trace is used to let the user bak to the last operation
+                    // [DISPLAY] the new operation in the Explorer.
+                }
+            }
+        }
+        return false;
+        // means this operation is illagal ,
+        // So Display in the InternetExplore,
+        // and [UNDO] the last operation,
+        // unpush this array in the trace.
+    }
+    
+    
+    
+    
     /**
      *
      * @param $mtr传入的二维数组， 用于显示结果            
