@@ -201,7 +201,7 @@ class Main
         for ($i = 0; $i < 4; $i ++) {
             echo '<tr>' . "\n";
             for ($j = 0; $j < 4; $j ++) {
-                echo '<td>' . $mtr[$i][$j] . '</td>' . "\n";
+                echo '<td id="'.$i.','.$j.'">' . $mtr[$i][$j] . '</td>' . "\n";
             }
             echo "</tr>" . "\n";
         }
