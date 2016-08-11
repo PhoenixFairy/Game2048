@@ -13,3 +13,5 @@ function keyDown(e) {　　　　
 		down(res);
 	}
 }　　
+
+document.onkeydown = keyDown;
