@@ -4,13 +4,13 @@ function keyDown(e) {　　　　
 	// 38 = ^
 	// 39 = >>
 	if(keycode === 37){
-		left(res);
+		move(res,2);
 	} else if(keycode === 38){
-		up(res);
+		move(res,-2);
 	} else if(keycode === 39){
-		right(res);
+		move(res,1);
 	} else if(keycode === 40){
-		down(res);
+		move(res,-1);
 	}
 }　　
 
