@@ -67,7 +67,10 @@ class Page
         }
         ?>
 	</head>
+	<body>
+	
         <?php echo $this->data['body']."\n"?>
+	</body>
 </html>
 <?php
     }
