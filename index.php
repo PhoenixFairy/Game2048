@@ -1,7 +1,6 @@
 <?php
 include 'php/Main.php';
 include 'php/web/page.class.inc';
-include 'php/web/contants.inc';
 $data = array(
     'title' => "Game2048",
     'scripts' => array(
