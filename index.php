@@ -13,7 +13,16 @@ $data = array(
     'css' => array(
     	'css/index-style.css'
 	),
-    'body' => BODY_IN_INDEX,
+    'body' => Page::get_html_table(array(
+        'tr' => array(
+            array("","","",""),
+            array('','','',''),
+            array('','','',''),
+            array('','','',''),
+        ),
+        'id' => 'display',
+        'align' => 'center'
+    )),
 );
 $page = new Page($data);
 $page->do_html();
