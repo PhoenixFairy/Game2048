@@ -1,0 +1,19 @@
+body {
+	font-family: "Consolas";
+}
+
+table {
+	width: 500px;
+	height: 500px;
+	font-size: 20px;
+	border: 1px solid #2EF;
+}
+
+#display {
+	border: 4px solid aquamarine;
+}
+
+td {
+	font-size: 35px;
+	color: #900;
+}

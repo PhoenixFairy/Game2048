@@ -2,7 +2,7 @@
 include 'Main.php';
 $dirct = $_REQUEST['dirct'];
 if (isset($_REQUEST['array'])) {
-	$array = $_REQUEST['array'];
+	$array = json_decode($_REQUEST['array']);
 }
 if ($dirct == 'display') {
 	Main::display($array);
@@ -20,5 +20,8 @@ if ($dirct == 'move') {
 	} else {
 		echo '["error"]';
 	}
+}
+if($dirct == 'addr'){
+	echo json_encode(Main::add_rand_nbr($array));
 }
 ?>

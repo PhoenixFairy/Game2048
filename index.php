@@ -10,8 +10,10 @@ $data = array(
         'js/key-listener.js',
     	'js/index-initial.js'
     ),
+    'css' => array(
+    	'css/index-style.css'
+	),
     'body' => BODY_IN_INDEX,
-    'style' => STYLE_IN_INDEX
 );
 $page = new Page($data);
 $page->do_html();
