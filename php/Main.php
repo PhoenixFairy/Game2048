@@ -212,8 +212,6 @@ class Main
                 0
             )
         );
-        $dimension = Main::getRandomDimension();
-        $res[$dimension[0]][$dimension[1]] = Main::$ran[(int) rand(0, 1)];
         return $res;
     }
 

@@ -11,7 +11,7 @@ if ($dirct == 'display') {
 if ($dirct == 'initial') {
 	echo json_encode(Main::initial());
 	exit();
-}
+} 
 if ($dirct == 'move') {
 	if (isset($_REQUEST['moveid']) && isset($_REQUEST['array'])) {
 		$moveid = (int)$_REQUEST['moveid'];
