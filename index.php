@@ -1,5 +1,4 @@
 <?php
-include 'php/Main.php';
 include 'php/web/page.class.inc';
 $data = array(
     'title' => "Game2048",
